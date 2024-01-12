@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.map {
+  height: 600px;
+  width: 800px;
+}
