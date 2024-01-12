@@ -10,6 +10,7 @@ const LeafletMap = ({ userIp }) => {
   const position = [userLat, userLng];
 
   return (
+    <div className="map-container">
     <MapContainer
       className="map"
       center={position}
@@ -26,6 +27,7 @@ const LeafletMap = ({ userIp }) => {
         </Popup>
       </Marker>
     </MapContainer>
+    </div>
   );
 };
 
