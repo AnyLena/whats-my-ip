@@ -8,8 +8,10 @@ import DisplayTimeZone from "./components/DisplayTimeZone";
 function App() {
   const [userIp, setUserIp] = useState();
   const [userCountry, setUserCountry] = useState();
+  const [loading, setLoading] = useState(false);
 
   const fetchIp = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(
         ` https://geo.ipify.org/api/v2/country,city?apiKey=${
@@ -19,6 +21,8 @@ function App() {
       setUserIp(response.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -44,14 +48,16 @@ function App() {
 
   return (
     <>
-    <h1>What's my IP?</h1>
+      <h1>What's my IP?</h1>
       <div className="map-info-tile">
+        {loading && <div>Loading ...</div>}
+
         {userIp && <LeafletMap userIp={userIp} />}
         <div>
           {userIp && userCountry && (
             <DisplayIp userIp={userIp} userCountry={userCountry} />
           )}
-          <DisplayTimeZone />
+          {!loading && <DisplayTimeZone />}
         </div>
       </div>
     </>
