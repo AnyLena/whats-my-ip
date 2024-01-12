@@ -45,3 +45,24 @@
   height: 600px;
   width: 800px;
 }
+
+.map-info-tile {
+ display: flex;
+ align-items: center;
+ gap: 30px;
+ background-color: #726d65;
+ padding: 50px;
+ border-radius: 10px;
+}
+
+.info-text {
+  font-size: 1.5rem;
+  margin: 15px;
+
+}
+
+.info-text__title {
+  font-weight: bold;
+
+}
+

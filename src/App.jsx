@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import DisplayIp from "./components/DisplayIp";
 import LeafletMap from "./components/LeafletMap";
-import axios from 'axios';
+import axios from "axios";
 import DisplayTimeZone from "./components/DisplayTimeZone";
 
 function App() {
   const [userIp, setUserIp] = useState();
-  const [userCountry,setUserCountry]= useState();
+  const [userCountry, setUserCountry] = useState();
 
   const fetchIp = async () => {
     try {
@@ -37,16 +37,23 @@ function App() {
   useEffect(() => {
     fetchIp();
   }, []);
-  
+
   useEffect(() => {
     fetchCountry();
   }, [userIp]);
- 
+
   return (
     <>
-      {userIp && userCountry && <DisplayIp userIp={userIp} userCountry={userCountry}/>}
-      {userIp && <LeafletMap userIp={userIp}/>}
-      <DisplayTimeZone/>
+    <h1>What's my IP?</h1>
+      <div className="map-info-tile">
+        {userIp && <LeafletMap userIp={userIp} />}
+        <div>
+          {userIp && userCountry && (
+            <DisplayIp userIp={userIp} userCountry={userCountry} />
+          )}
+          <DisplayTimeZone />
+        </div>
+      </div>
     </>
   );
 }
