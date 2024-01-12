@@ -3,6 +3,7 @@ import "./App.css";
 import DisplayIp from "./components/DisplayIp";
 import LeafletMap from "./components/LeafletMap";
 import axios from 'axios';
+import DisplayTimeZone from "./components/DisplayTimeZone";
 
 function App() {
   const [userIp, setUserIp] = useState();
@@ -28,14 +29,11 @@ function App() {
         `
       );
       setUserCountry(response.data[0]);
-      console.log(response);
     } catch (error) {
       console.error("Error fetching data: ", error.message);
     }
   };
 
-  console.log(userIp);
-  console.log(userCountry);
   useEffect(() => {
     fetchIp();
   }, []);
@@ -48,6 +46,7 @@ function App() {
     <>
       {userIp && userCountry && <DisplayIp userIp={userIp} userCountry={userCountry}/>}
       {userIp && <LeafletMap userIp={userIp}/>}
+      <DisplayTimeZone/>
     </>
   );
 }
