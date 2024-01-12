@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 
+
 const LeafletMap = ({ userIp }) => {
   useEffect(() => {}, [userIp]);
 
